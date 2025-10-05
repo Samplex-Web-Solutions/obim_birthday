@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Happy Birthday Darling — Uzoga Favour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg1: #0f172a;
+            /* midnight */
+            --bg2: #5b21b6;
+            /* indigo */
+            --card: #0b1220;
+            --accent: #ff6b6b;
+            --accent-2: #ffd166;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-2: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, Arial, sans-serif;
+            background: linear-gradient(180deg, var(--bg1), var(--bg2));
+            color: #fff
+        }
+
+        /* Center stage */
+        .stage {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* Card */
+        .card {
+            width: 960px;
+            max-width: 96vw;
+            background: linear-gradient(180deg, var(--card), #071026);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(2, 6, 23, 0.7);
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        /* Left: scene */
+        .scene {
+            flex: 1;
+            position: relative;
+            height: 420px;
+            border-radius: 12px;
+            padding: 18px;
+            background: linear-gradient(180deg, var(--glass), var(--glass-2));
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .scene .cake {
+            width: 260px;
+            height: 260px;
+            background: linear-gradient(180deg, #fff, #ffe6f0);
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            top: 32px;
+            height: 36px;
+            background: #ffd9e6;
+            border-radius: 10px
+        }
+
+        .cake .candles {
+            position: absolute;
+            top: -26px;
+            display: flex;
+            gap: 10px
+        }
+
+        .candle {
+            width: 10px;
+            height: 34px;
+            background: #ff6b6b;
+            border-radius: 6px;
+            position: relative;
+            animation: flicker 1.6s infinite
+        }
+
+        .candle::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 18px;
+            background: radial-gradient(circle at 50% 20%, #fff9c4, #ffd54f 40%, transparent 60%);
+            border-radius: 50%
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-2px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 28px;
+            opacity: .9;
+            animation: floatUp 6s linear infinite;
+            pointer-events: none
+        }
+
+        .heart.h2 {
+            left: 80px;
+            font-size: 22px;
+            animation-duration: 5s
+        }
+
+        .heart.h3 {
+            left: 140px;
+            font-size: 32px;
+            animation-duration: 7s
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(.8);
+                opacity: 0
+            }
+
+            10% {
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(-420px) scale(1.1);
+                opacity: 0
+            }
+        }
+
+        /* Right: message */
+        .panel {
+            width: 420px;
+            max-width: 48%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            line-height: 1;
+            margin: 0;
+            color: var(--accent)
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: .85
+        }
+
+        .message {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            padding: 18px;
+            border-radius: 12px;
+            min-height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 0;
+            background: linear-gradient(90deg, var(--accent), #ff9a9a);
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.12);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06)
+        }
+
+        /* Confetti canvas sits on top */
+        #confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none
+        }
+
+        /* Reveal animation for the card message */
+        .hidden-message {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all .6s cubic-bezier(.2, .9, .3, 1)
+        }
+
+        .hidden-message.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* responsive */
+        @media (max-width:880px) {
+            .card {
+                flex-direction: column;
+                padding: 18px
+            }
+
+            .scene {
+                height: 320px;
+                width: 100%
+            }
+
+            .panel {
+                width: 100%;
+                max-width: none
+            }
+
+            .title {
+                font-size: 40px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="card">
+            <canvas id="confetti"></canvas>
+
+            <div class="scene" aria-hidden="true">
+                <div class="cake" id="cake" role="img" aria-label="Birthday cake illustration">
+                    <div class="candles">
+                        <div class="candle"></div>
+                        <div class="candle"></div>
+                        <div class="candle"></div>
+                    </div>
+                </div>
+                <div class="heart h2">❤️</div>
+                <div class="heart h3">💖</div>
+                <div class="heart h3">💖</div>
+                <div class="heart h3">💖</div>
+
+            </div>
+
+            <div class="panel">
+                <h1 class="title">Happy Birthday</h1>
+                <div class="subtitle">Make it unforgettable — press the button.</div>
+
+                <div class="message hidden-message" id="messageBox">
+                    <div>
+                        <div style="font-size:20px;">Obim <span id="nameSpan">❤️❤️❤️</span> —</div>
+                        <div style="margin-top:8px;font-size:14px;opacity:.9">
+When I close my eyes I see your light, and when I open them I find my home in your smile.
+You are the quiet that calms my storms, the laughter that colors my days, the strength that lifts me up.
+Today I celebrate you — your gentle heart, your wild courage, your kind hands that make my life better in ways I never knew I needed.
+I love you beyond words, beyond promises, beyond time. Always you, always us.
+— Charming ❤️
+                            <strong>Yours</strong></div>
+                    </div>
+                </div>
+
+                <div class="controls" style="justify-content: center; align-items: center;">
+                    <button class="btn" id="openBtn">Open Surprise</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- Simple confetti generator (canvas) ----------
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+        function resize() { W = canvas.width = canvas.clientWidth; H = canvas.height = canvas.clientHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        function random(min, max) { return Math.random() * (max - min) + min }
+
+        class Confetti {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = random(0, W);
+                this.y = random(-50, -10);
+                this.size = random(6, 14);
+                this.speedY = random(2, 6);
+                this.speedX = random(-1.5, 1.5);
+                this.rotation = random(0, Math.PI * 2);
+                this.spin = random(-0.15, 0.15);
+                this.color = ['#ff6b6b', '#ffd166', '#6ee7b7', '#60a5fa', '#c084fc'][Math.floor(random(0, 5))];
+                this.tilt = random(-0.2, 0.2);
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.spin;
+                if (this.y > H + 20 || this.x < -50 || this.x > W + 50) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.6);
+                ctx.restore();
+            }
+        }
+
+        let confettis = [];
+        function startConfetti(count = 80) { confettis = Array.from({ length: count }, () => new Confetti()); }
+        function loop() { ctx.clearRect(0, 0, W, H); confettis.forEach(c => { c.update(); c.draw() }); requestAnimationFrame(loop); }
+
+        // ---------- Button interactions ----------
+        const openBtn = document.getElementById('openBtn');
+        const messageBox = document.getElementById('messageBox');
+        const customizeBtn = document.getElementById('customizeBtn');
+        const nameSpan = document.getElementById('nameSpan');
+
+        openBtn.addEventListener('click', () => {
+            // animate cake (simple scale + glow)
+            const cake = document.getElementById('cake');
+            cake.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 700, iterations: 1, easing: 'ease-out' });
+
+            // show message
+            messageBox.classList.add('show');
+
+            // confetti
+            startConfetti(120);
+            loop();
+
+            // small pulse on title
+            const title = document.querySelector('.title');
+            title.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 900, iterations: 1, easing: 'cubic-bezier(.2,.9,.3,1)' });
+
+            // change button text
+            openBtn.textContent = 'Opened ❤️';
+            openBtn.disabled = true;
+        });
+
+        customizeBtn.addEventListener('click', () => {
+            const name = prompt('Enter her name (what you want displayed):', 'Love');
+            if (name !== null) { nameSpan.textContent = name.trim() || 'Love'; }
+            const newMsg = prompt('Write a short message (max ~200 chars):', 'You make the ordinary feel like home.');
+            if (newMsg !== null) {
+                const box = document.getElementById('messageBox');
+                box.innerHTML = `<div><div style="font-size:20px;">Hey <span id=\"nameSpan\">${escapeHtml(nameSpan.textContent)}</span> —</div><div style=\"margin-top:8px;font-size:14px;opacity:.9\">${escapeHtml(newMsg)}</div></div>`;
+                // reassign nameSpan to new node
+                const newSpan = box.querySelector('#nameSpan'); if (newSpan) nameSpan.textContent = newSpan.textContent;
+            }
+        });
+
+        // small helper to avoid breaking the html when user types < >
+        function escapeHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+
+        // make the hearts spawn repeatedly for ambience
+        (function spawnHearts() {
+            const stage = document.querySelector('.scene');
+            setInterval(() => {
+                const e = document.createElement('div'); e.className = 'heart'; e.textContent = ['💖', '❤️', '💗', '💕'][Math.floor(Math.random() * 4)];
+                e.style.left = `${20 + Math.random() * 260}px`;
+                e.style.fontSize = `${14 + Math.random() * 28}px`;
+                stage.appendChild(e);
+                setTimeout(() => { e.remove(); }, 7000);
+            }, 900);
+        })();
+
+        // ensure canvas resizes to parent (for responsiveness)
+        function tickCanvasSize() { const rect = canvas.getBoundingClientRect(); canvas.width = rect.width; canvas.height = rect.height; W = canvas.width; H = canvas.height; }
+        window.addEventListener('resize', tickCanvasSize); tickCanvasSize();
+
+        // accessibility: allow open with Enter when focused
+        openBtn.addEventListener('keyup', (e) => { if (e.key === 'Enter') openBtn.click(); });
+
+    </script>
+</body>
+
+</html>
